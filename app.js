@@ -2,17 +2,16 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const wikipage = require('./views/wikipage');
-const models = require('./models');
-const wikiRouter = require('./routes/wiki');
+const { db } = require('./models');
 const userRouter = require('./routes/user');
 
 app.use(morgan('dev'));
 app.use(express.static(`${__dirname}/public`));
 app.use(express.urlencoded({ extended: true }));
-app.use('/wiki', wikiRouter);
+app.use('/wiki', require('./routes/wiki'));
 
 // connect
-models.db.authenticate().then(() => {
+db.authenticate().then(() => {
   console.log('connected to the database');
 });
 app.get('/', (req, res) => {
@@ -21,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 const init = async () => {
-  await models.db.sync({ force: true });
+  await db.sync({ force: true });
 
   app.listen(3000, () => {
     console.log('Server listening on port 3000');
