@@ -7,12 +7,11 @@ router.get('/', (req, res, next) => {
   res.send('got to GET /wiki/');
 });
 router.post('/', async (req, res, next) => {
-  let opt = {
+  const page = new Page({
     title: req.body.title,
     content: req.body.content,
-  };
-  const page = new Page(opt);
-  console.log(opt);
+    status: req.body.status,
+  });
   // make sure we only redirect *after* our save is complete!
   // note: `.save` returns a promise.
   try {
