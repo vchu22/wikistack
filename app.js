@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const wikipage = require('./views/wikipage');
+const wikiPage = require('./views/wikiPage');
 const { db } = require('./models');
 const userRouter = require('./routes/user');
 
@@ -16,7 +16,6 @@ db.authenticate().then(() => {
 });
 app.get('/', (req, res) => {
   res.redirect('/wiki');
-  // res.send(wikipage(testPage, 'author'));
 });
 
 const init = async () => {
