@@ -30,7 +30,10 @@ module.exports = () =>
 
         <label for="status" class="col-sm-2 control-label">Page Status</label>
         <div class="col-sm-10">
-          <input id="status" name="status" type="text" class="form-control" />
+          <select name="status">
+            <option>open</option>
+            <option>closed</option>
+          </select>
         </div>
       </div>
 

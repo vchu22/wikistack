@@ -32,7 +32,7 @@ const Page = db.define(
         page.slug = generateSlug(page.title);
       },
       afterValidate: (page, options) => {
-        console.log(page.slug);
+        console.log('The slug is', page.slug);
       },
     },
   }
