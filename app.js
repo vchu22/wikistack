@@ -3,12 +3,12 @@ const app = express();
 const morgan = require('morgan');
 const wikiPage = require('./views/wikiPage');
 const { db } = require('./models');
-const userRouter = require('./routes/user');
 
 app.use(morgan('dev'));
 app.use(express.static(`${__dirname}/public`));
 app.use(express.urlencoded({ extended: true }));
 app.use('/wiki', require('./routes/wiki'));
+app.use('/users', require('./routes/user'));
 
 // connect
 db.authenticate().then(() => {
