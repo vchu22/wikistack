@@ -28,11 +28,14 @@ const Page = db.define(
   },
   {
     hooks: {
-      beforeValidate: (page, options) => {
+      beforeValidate: page => {
         page.slug = generateSlug(page.title);
       },
-      afterValidate: (page, options) => {
+      afterValidate: page => {
         console.log('The slug is', page.slug);
+      },
+      beforeUpdate: page => {
+        page.slug = generateSlug(page.title);
       },
     },
   }
